@@ -10,6 +10,7 @@ import com.rainett.javagram.controller.processor.UpdateProcessor;
 import com.rainett.javagram.controller.processor.UpdateProcessorImpl;
 import com.rainett.javagram.controller.webhook.WebhookBot;
 import com.rainett.javagram.controller.webhook.WebhookController;
+import com.rainett.javagram.controller.webhook.startup.WebhookUpdater;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -61,6 +62,12 @@ public class AutoConfig {
     @ConditionalOnMissingBean
     public WebhookController webhookController(UpdateProcessor processor) {
         return new WebhookController(processor);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public WebhookUpdater appStartup(BotConfig botConfig) {
+        return new WebhookUpdater(botConfig);
     }
 
 
