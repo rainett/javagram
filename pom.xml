@@ -8,14 +8,40 @@
 		<version>3.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.rainett</groupId>
+	<groupId>io.github.rainett</groupId>
 	<artifactId>javagram</artifactId>
-	<version>0.0.1</version>
-	<name>mvntest</name>
-	<description>Demo project for Spring Boot</description>
+	<version>1.0</version>
+
+	<name>javagram</name>
+	<url>https://github.com/rainett/javagram</url>
+	<description>Spring Boot Library for Java TelegramBots</description>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Valeriy Zhmyshenko</name>
+			<email>valera3450zhma@gmail.com</email>
+			<organization>io.github.rainett</organization>
+			<organizationUrl>https://github.com/rainett</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/rainett/javagram.git</connection>
+		<developerConnection>scm:git:ssh://github.com:rainett/javagram.git</developerConnection>
+		<url>https://github.com/rainett/javagram</url>
+	</scm>
+
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
