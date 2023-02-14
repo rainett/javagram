@@ -45,7 +45,7 @@ public class AutoConfig {
 
     @Bean
     @ConditionalOnMissingBean
-    public UpdateProcessor updateProcessor(ExecutablesContainer container, WebhookBot bot) {
+    public UpdateProcessor updateProcessor(ExecutablesContainer container, BotExecutor bot) {
         return new UpdateProcessorImpl(container, bot);
     }
 

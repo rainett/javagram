@@ -22,16 +22,16 @@ public class BotConfig {
     /**
      * Bot webhook path. E.g. if you are using ngrok, place here ngrok redirect URL
      */
-    private String path;
+    private String path = "unknown_path";
 
     /**
      * Bot username. "@" symbol should be placed too
      */
-    private String username;
+    private String username = "unknown_username";
 
     /**
      * Bot token. Copy it from BotFather in telegram
      */
-    private String token;
+    private String token = "unknown_token";
 
 }

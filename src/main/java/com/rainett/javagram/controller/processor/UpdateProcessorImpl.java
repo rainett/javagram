@@ -2,15 +2,14 @@ package com.rainett.javagram.controller.processor;
 
 import com.rainett.javagram.annotations.Command;
 import com.rainett.javagram.annotations.Run;
-import com.rainett.javagram.controller.webhook.WebhookBot;
 import com.rainett.javagram.controller.executables.container.ExecutablesContainer;
+import com.rainett.javagram.controller.executor.BotExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -23,9 +22,9 @@ import java.util.Optional;
 public class UpdateProcessorImpl implements UpdateProcessor {
 
     private final ExecutablesContainer executablesContainer;
-    private final WebhookBot bot;
+    private final BotExecutor bot;
 
-    public UpdateProcessorImpl(ExecutablesContainer executablesContainer, WebhookBot bot) {
+    public UpdateProcessorImpl(ExecutablesContainer executablesContainer, BotExecutor bot) {
         this.executablesContainer = executablesContainer;
         this.bot = bot;
         setCommandsDescriptions();
@@ -33,11 +32,8 @@ public class UpdateProcessorImpl implements UpdateProcessor {
 
     private void setCommandsDescriptions() {
         List<BotCommand> commands = getBotCommands(executablesContainer);
-        try {
+        if (!commands.isEmpty())
             bot.execute(new SetMyCommands(commands, new BotCommandScopeDefault(), null));
-        } catch (TelegramApiException e) {
-            log.error("Error during setting commands", e);
-        }
     }
 
     private List<BotCommand> getBotCommands(ExecutablesContainer executablesContainer) {
