@@ -1,4 +1,4 @@
-package com.rainett.javagram.controller.executor;
+package com.rainett.javagram.controller.executor.sync;
 
 import com.rainett.javagram.controller.webhook.WebhookBot;
 import lombok.RequiredArgsConstructor;
@@ -184,6 +184,7 @@ public class BotExecutorImpl implements BotExecutor {
             return false;
         }
     }
+
 
 
 }

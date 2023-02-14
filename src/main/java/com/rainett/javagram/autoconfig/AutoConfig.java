@@ -4,8 +4,10 @@ import com.rainett.javagram.config.AppConfig;
 import com.rainett.javagram.config.BotConfig;
 import com.rainett.javagram.controller.executables.container.ExecutablesContainer;
 import com.rainett.javagram.controller.executables.container.ExecutablesContainerImpl;
-import com.rainett.javagram.controller.executor.BotExecutor;
-import com.rainett.javagram.controller.executor.BotExecutorImpl;
+import com.rainett.javagram.controller.executor.async.BotExecutorAsync;
+import com.rainett.javagram.controller.executor.async.BotExecutorAsyncImpl;
+import com.rainett.javagram.controller.executor.sync.BotExecutor;
+import com.rainett.javagram.controller.executor.sync.BotExecutorImpl;
 import com.rainett.javagram.controller.processor.UpdateProcessor;
 import com.rainett.javagram.controller.processor.UpdateProcessorImpl;
 import com.rainett.javagram.controller.webhook.WebhookBot;
@@ -43,6 +45,11 @@ public class AutoConfig {
         return new BotExecutorImpl(bot);
     }
 
+    @Bean
+    @ConditionalOnMissingBean
+    public BotExecutorAsync botExecutorAsync(WebhookBot bot) {
+        return new BotExecutorAsyncImpl(bot);
+    }
     @Bean
     @ConditionalOnMissingBean
     public UpdateProcessor updateProcessor(ExecutablesContainer container, BotExecutor bot) {

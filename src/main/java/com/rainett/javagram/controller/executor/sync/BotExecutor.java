@@ -1,4 +1,4 @@
-package com.rainett.javagram.controller.executor;
+package com.rainett.javagram.controller.executor.sync;
 
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.groupadministration.SetChatPhoto;

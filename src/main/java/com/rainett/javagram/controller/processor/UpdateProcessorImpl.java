@@ -3,7 +3,7 @@ package com.rainett.javagram.controller.processor;
 import com.rainett.javagram.annotations.Command;
 import com.rainett.javagram.annotations.Run;
 import com.rainett.javagram.controller.executables.container.ExecutablesContainer;
-import com.rainett.javagram.controller.executor.BotExecutor;
+import com.rainett.javagram.controller.executor.sync.BotExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
