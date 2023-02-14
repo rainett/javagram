@@ -13,6 +13,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.lang.annotation.Annotation;
 
+/**
+ * Represents key - summed information about Telegram update, or update processor
+ */
 @Data
 @Builder(access = AccessLevel.PACKAGE)
 @Slf4j
@@ -21,6 +24,12 @@ public class UpdateKey {
     private CommandUpdate commandUpdate;
     private CallbackUpdate callbackUpdate;
 
+    /**
+     * Provides UpdateKey
+     * @param value update processor, or Telegram update
+     * @return UpdateKey
+     * @throws UnknownUpdateException if unknown parameter is passed
+     */
     public static UpdateKey getInstance(Object value) throws UnknownUpdateException {
         if (hasAnnotation(value, Command.class)) {
             return KeyBuilder.ofCommand(value.getClass().getAnnotation(Command.class));

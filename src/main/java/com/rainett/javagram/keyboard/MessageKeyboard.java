@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * More usable wrapper for {@link InlineKeyboardMarkup}. Prefer using this instead of default Telegram keyboards
+ */
 public class MessageKeyboard {
 
     private final List<MessageKeyboardRow> rows;

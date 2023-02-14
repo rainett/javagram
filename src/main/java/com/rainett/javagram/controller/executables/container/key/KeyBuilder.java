@@ -7,6 +7,9 @@ import com.rainett.javagram.controller.executables.container.key.update.CommandU
 import com.rainett.javagram.exceptions.UnknownUpdateException;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+/**
+ * Builds key from Executables or Telegram updates
+ */
 public class KeyBuilder {
 
     public static UpdateKey ofCommand(Command command) {

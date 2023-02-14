@@ -7,6 +7,9 @@ import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 
 import java.util.Arrays;
 
+/**
+ * Represents callback data in more usable form, instead of simple string. Consists of callback name, ID of user, who sent message and some arbitrary parameters
+ */
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data

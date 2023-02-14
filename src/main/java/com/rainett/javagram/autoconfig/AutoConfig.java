@@ -18,6 +18,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 
+/**
+ * Autoconfiguration for this app
+ */
 @Configuration
 @EnableConfigurationProperties(BotConfig.class)
 public class AutoConfig {

@@ -9,6 +9,9 @@ import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.starter.SpringWebhookBot;
 
+/**
+ * Main bot class. Executes all Telegram methods, setups webhook.
+ */
 @Getter
 @Setter
 @Slf4j

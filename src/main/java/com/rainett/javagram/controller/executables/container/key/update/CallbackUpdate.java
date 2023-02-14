@@ -8,6 +8,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Objects;
 
+/**
+ * Represents update with callback in it
+ */
 @Getter
 @Setter
 public class CallbackUpdate {
@@ -20,6 +23,10 @@ public class CallbackUpdate {
         fromSender = callback.fromSender();
     }
 
+    /**
+     * Generates CallbackUpdate from received update
+     * @param update Telegram update
+     */
     public CallbackUpdate(Update update) {
         CallbackQuery callbackQuery = update.getCallbackQuery();
         String[] callbackDataSplit = callbackQuery.getData().split("\\?");
@@ -27,6 +34,11 @@ public class CallbackUpdate {
         fromSender = callbackQuery.getFrom().getId().toString().equals(callbackDataSplit[1]);
     }
 
+    /**
+     * Checks weather update has callback, or not
+     * @param update Telegram update
+     * @return true, if update has callback
+     */
     public static boolean updateMatches(Update update) {
         return update.hasCallbackQuery();
     }

@@ -14,6 +14,10 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Wrapper for Telegram {@link com.rainett.javagram.controller.webhook.WebhookBot}
+ * Prefer this over default WebhookBot, if you don't care about {@link org.telegram.telegrambots.meta.exceptions.TelegramApiException} processing.
+ */
 public interface BotExecutor {
 
     <T extends Serializable, Method extends BotApiMethod<T>> T execute(Method method);

@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Represents row of buttons in message keyboard
+ */
 public class MessageKeyboardRow {
 
     private final List<MessageKeyboardButton> buttons;

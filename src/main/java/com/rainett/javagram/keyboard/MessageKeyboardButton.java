@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
+/**
+ * Represents button of a message keyboard
+ */
 @Getter
 @Setter
 @AllArgsConstructor

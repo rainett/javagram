@@ -6,7 +6,17 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 
 import java.util.Locale;
 
+/**
+ * App configuration class
+ */
 public class AppConfig {
+
+    /**
+     * Configures MessageSource bean.
+     * Default locale is set to en-US
+     * Basename - "messages", plus language code, like "uk-UA"
+     * @return {@link MessageSource} bean
+     */
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();

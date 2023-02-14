@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+/**
+ * Main controller. Receives Telegram updates as HTTP POST requests
+ */
 @RequiredArgsConstructor
 @Slf4j
 @RestController
