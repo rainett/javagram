@@ -1,18 +1,16 @@
 package com.rainett.javagram.autoconfig;
 
-import com.rainett.javagram.config.AppConfig;
+import com.rainett.javagram.Bot;
+import com.rainett.javagram.action.ActionContainer;
+import com.rainett.javagram.action.ActionTypeService;
+import com.rainett.javagram.action.ComparatorService;
 import com.rainett.javagram.config.BotConfig;
-import com.rainett.javagram.controller.executables.container.ExecutablesContainer;
-import com.rainett.javagram.controller.executables.container.ExecutablesContainerImpl;
-import com.rainett.javagram.controller.executor.async.BotExecutorAsync;
-import com.rainett.javagram.controller.executor.async.BotExecutorAsyncImpl;
-import com.rainett.javagram.controller.executor.sync.BotExecutor;
-import com.rainett.javagram.controller.executor.sync.BotExecutorImpl;
-import com.rainett.javagram.controller.processor.UpdateProcessor;
-import com.rainett.javagram.controller.processor.UpdateProcessorImpl;
-import com.rainett.javagram.controller.webhook.WebhookBot;
-import com.rainett.javagram.controller.webhook.WebhookController;
-import com.rainett.javagram.controller.webhook.startup.WebhookUpdater;
+import com.rainett.javagram.defaults.DefaultAction;
+import com.rainett.javagram.update.ApplicationReadyHandler;
+import com.rainett.javagram.update.UpdateController;
+import com.rainett.javagram.update.UpdateService;
+import com.rainett.javagram.update.matcher.ActionMatcherService;
+import com.rainett.javagram.update.matcher.CommandMatcher;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -20,65 +18,62 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 
-/**
- * Autoconfiguration for this app
- */
 @Configuration
 @EnableConfigurationProperties(BotConfig.class)
 public class AutoConfig {
 
-    @Bean
-    @ConditionalOnMissingBean
-    public AppConfig appConfig() {
-        return new AppConfig();
-    }
+  @Bean
+  public ActionContainer actionContainer(ApplicationContext context,
+      ComparatorService comparatorService, ActionMatcherService actionMatcherService,
+      ActionTypeService actionTypeService, Bot bot, DefaultAction defaultAction) {
+    return new ActionContainer(context, comparatorService, actionMatcherService,
+        actionTypeService, bot, defaultAction);
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public ExecutablesContainer executablesContainer(ApplicationContext appContext) {
-        return new ExecutablesContainerImpl(appContext);
-    }
+  @Bean
+  public ActionTypeService actionTypeService() {
+    return new ActionTypeService();
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public BotExecutor botExecutor(WebhookBot bot) {
-        return new BotExecutorImpl(bot);
-    }
+  @Bean
+  public ComparatorService comparatorService() {
+    return new ComparatorService();
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public BotExecutorAsync botExecutorAsync(WebhookBot bot) {
-        return new BotExecutorAsyncImpl(bot);
-    }
-    @Bean
-    @ConditionalOnMissingBean
-    public UpdateProcessor updateProcessor(ExecutablesContainer container, BotExecutor bot) {
-        return new UpdateProcessorImpl(container, bot);
-    }
+  @Bean
+  public ActionMatcherService actionMatcherService(ApplicationContext context) {
+    return new ActionMatcherService(context);
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public SetWebhook setWebhook(BotConfig botConfig) {
-        return SetWebhook.builder().url(botConfig.getPath()).build();
-    }
+  @Bean
+  public CommandMatcher commandMatcher(BotConfig botConfig) {
+    return new CommandMatcher(botConfig.getUsername());
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public WebhookBot webhookBot(SetWebhook webhook, BotConfig config) {
-        return new WebhookBot(webhook, config);
-    }
+  @Bean
+  public ApplicationReadyHandler applicationReadyHandler(BotConfig botConfig) {
+    return new ApplicationReadyHandler(botConfig);
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public WebhookController webhookController(UpdateProcessor processor) {
-        return new WebhookController(processor);
-    }
+  @Bean
+  public UpdateController updateController(UpdateService updateService) {
+    return new UpdateController(updateService);
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public WebhookUpdater appStartup(BotConfig botConfig) {
-        return new WebhookUpdater(botConfig);
-    }
+  @Bean
+  public UpdateService updateService(ActionContainer actionContainer) {
+    return new UpdateService(actionContainer);
+  }
 
+  @Bean
+  public Bot bot(BotConfig botConfig) {
+    return new Bot(new SetWebhook(botConfig.getPath()), botConfig);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public DefaultAction defaultAction() {
+    return new DefaultAction();
+  }
 
 }
