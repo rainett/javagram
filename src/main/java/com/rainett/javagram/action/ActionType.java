@@ -1,4 +1,4 @@
-package com.rainett.javagram.annotations;
+package com.rainett.javagram.action;
 
 import com.rainett.javagram.update.UpdateType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Component
-public @interface ActionMatcherType {
+public @interface ActionType {
   UpdateType value();
 }

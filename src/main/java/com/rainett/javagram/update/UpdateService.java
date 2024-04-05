@@ -2,7 +2,6 @@ package com.rainett.javagram.update;
 
 import com.rainett.javagram.action.ActionContainer;
 import com.rainett.javagram.exceptions.RunnableMethodNotFound;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +20,8 @@ public class UpdateService {
     Method method = getRunnableMethod(botAction);
     try {
       method.invoke(botAction, update);
-    } catch (IllegalAccessException | InvocationTargetException e) {
-      throw new RuntimeException(e);
+    } catch (Exception e) {
+      log.error("Error while executing runnable method", e);
     }
   }
 

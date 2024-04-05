@@ -1,6 +1,6 @@
-package com.rainett.javagram.update.matcher;
+package com.rainett.javagram.action.matcher;
 
-import com.rainett.javagram.annotations.ActionMatcherType;
+import com.rainett.javagram.action.ActionType;
 import com.rainett.javagram.exceptions.ActionMatcherNotFound;
 import com.rainett.javagram.update.UpdateType;
 import java.util.Map;
@@ -14,7 +14,7 @@ public class ActionMatcherService {
   private final Map<UpdateType, ActionMatcher> matchersMap;
 
   public ActionMatcherService(ApplicationContext context) {
-    this.matchersMap = context.getBeansWithAnnotation(ActionMatcherType.class).values()
+    this.matchersMap = context.getBeansWithAnnotation(ActionType.class).values()
         .stream()
         .filter(obj -> obj instanceof ActionMatcher)
         .map(matcher -> (ActionMatcher) matcher)
@@ -23,7 +23,7 @@ public class ActionMatcherService {
   }
 
   private static UpdateType getUpdateTypeFromAction(Object matcher) {
-    return matcher.getClass().getDeclaredAnnotation(ActionMatcherType.class).value();
+    return matcher.getClass().getDeclaredAnnotation(ActionType.class).value();
   }
 
   public ActionMatcher getMatcher(UpdateType updateType) {

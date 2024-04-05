@@ -1,17 +1,17 @@
-package com.rainett.javagram.action;
+package com.rainett.javagram.update;
 
 import com.rainett.javagram.annotations.BotAction;
-import com.rainett.javagram.exceptions.UnknownUpdateException;
-import com.rainett.javagram.update.UpdateType;
+import com.rainett.javagram.exceptions.UnknownUpdateTypeException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.function.Predicate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-public class ActionTypeService {
+@Slf4j
+public class UpdateTypeService {
 
   private static final Map<Predicate<Update>, UpdateType> UPDATE_TYPE_MAP = new LinkedHashMap<>();
 
@@ -36,21 +36,17 @@ public class ActionTypeService {
   }
 
   public UpdateType getUpdateTypeFromUpdate(Update update) {
-    for (Predicate<Update> predicate : getUpdateKeys()) {
+    for (Predicate<Update> predicate : UPDATE_TYPE_MAP.keySet()) {
       if (predicate.test(update)) {
         return getUpdateType(predicate);
       }
     }
-    throw new UnknownUpdateException("Unknown update: " + update.toString());
+    throw new UnknownUpdateTypeException(update);
   }
 
   public UpdateType getUpdateTypeFromAction(Object action) {
     return Objects.requireNonNull(AnnotationUtils
       .findAnnotation(action.getClass(), BotAction.class)).value();
-  }
-
-  private Set<Predicate<Update>> getUpdateKeys() {
-    return UPDATE_TYPE_MAP.keySet();
   }
 
   private UpdateType getUpdateType(Predicate<Update> predicate) {

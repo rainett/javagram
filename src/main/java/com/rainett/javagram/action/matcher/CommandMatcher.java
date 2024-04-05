@@ -1,13 +1,13 @@
-package com.rainett.javagram.update.matcher;
+package com.rainett.javagram.action.matcher;
 
-import com.rainett.javagram.annotations.ActionMatcherType;
+import com.rainett.javagram.action.ActionType;
 import com.rainett.javagram.annotations.Command;
 import com.rainett.javagram.update.UpdateType;
 import lombok.RequiredArgsConstructor;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @RequiredArgsConstructor
-@ActionMatcherType(UpdateType.COMMAND)
+@ActionType(UpdateType.COMMAND)
 public class CommandMatcher implements ActionMatcher {
 
   private final String botUsername;
