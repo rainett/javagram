@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.PropertySource;
 @Setter
 @ToString
 @ConditionalOnMissingBean
+@Configuration
 @PropertySource({"classpath:application.yml", "classpath:default.yml"})
 @ConfigurationProperties(prefix = "bot")
 public class BotConfig {

@@ -1,11 +1,13 @@
 package com.rainett.javagram;
 
 import com.rainett.javagram.config.BotConfig;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.starter.SpringWebhookBot;
 
+@Component
 public class Bot extends SpringWebhookBot {
   private final BotConfig botConfig;
 

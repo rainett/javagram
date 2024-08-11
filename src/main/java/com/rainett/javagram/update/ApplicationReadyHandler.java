@@ -7,10 +7,12 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class ApplicationReadyHandler implements ApplicationListener<ApplicationReadyEvent> {
 
   private final BotConfig botConfig;

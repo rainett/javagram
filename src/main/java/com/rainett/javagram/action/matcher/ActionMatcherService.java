@@ -8,18 +8,25 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ActionMatcherService {
 
   private final Map<UpdateType, ActionMatcher> matchersMap;
 
   public ActionMatcherService(ApplicationContext context) {
-    this.matchersMap = context.getBeansWithAnnotation(ActionType.class).values()
-        .stream()
-        .filter(obj -> obj instanceof ActionMatcher)
-        .map(matcher -> (ActionMatcher) matcher)
-        .collect(
-          Collectors.toMap(ActionMatcherService::getUpdateTypeFromAction, Function.identity()));
+    this.matchersMap = getActionMatchersFromContext(context);
+  }
+
+  private static Map<UpdateType, ActionMatcher> getActionMatchersFromContext(
+    ApplicationContext context) {
+    return context.getBeansWithAnnotation(ActionType.class).values()
+      .stream()
+      .filter(obj -> obj instanceof ActionMatcher)
+      .map(matcher -> (ActionMatcher) matcher)
+      .collect(Collectors.toMap(ActionMatcherService::getUpdateTypeFromAction,
+        Function.identity()));
   }
 
   private static UpdateType getUpdateTypeFromAction(Object matcher) {
@@ -28,6 +35,6 @@ public class ActionMatcherService {
 
   public ActionMatcher getMatcher(UpdateType updateType) {
     return Optional.ofNullable(matchersMap.get(updateType))
-        .orElseThrow(() -> new ActionMatcherNotFound(updateType));
+      .orElseThrow(() -> new ActionMatcherNotFound(updateType));
   }
 }

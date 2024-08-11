@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class ActionComparatorService {
 
   private final Map<UpdateType, ActionComparator> comparatorsMap;
@@ -17,7 +18,6 @@ public class ActionComparatorService {
       .filter(c -> c.getClass().isAnnotationPresent(ActionType.class))
       .collect(Collectors.toMap(ActionComparator::getUpdateType, Function.identity()));
   }
-
 
   public int compare(Object o1, Object o2, UpdateType updateType) {
     if (!comparatorsMap.containsKey(updateType)) {

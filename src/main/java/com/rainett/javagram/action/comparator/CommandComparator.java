@@ -1,6 +1,5 @@
 package com.rainett.javagram.action.comparator;
 
-
 import com.rainett.javagram.action.ActionType;
 import com.rainett.javagram.annotations.Command;
 import com.rainett.javagram.update.UpdateType;
@@ -10,8 +9,7 @@ import java.util.Comparator;
 public class CommandComparator implements ActionComparator {
 
   /**
-   * Compares two commands.
-   * {@link ActionComparatorService} is using {@link Comparator#reversed()}.
+   * Compares two commands. {@link ActionComparatorService} is using {@link Comparator#reversed()}.
    *
    * @param c1 the first object to be compared.
    * @param c2 the second object to be compared.
