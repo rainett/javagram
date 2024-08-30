@@ -1,4 +1,4 @@
-package com.rainett.javagram.update;
+package com.rainett.javagram.update.type;
 
 public enum UpdateType {
 

@@ -12,15 +12,13 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 @Setter
 @AllArgsConstructor
 public class MessageKeyboardButton {
+    private ButtonCallback callback;
+    private String text;
 
-  private ButtonCallback callback;
-  private String text;
-
-  public InlineKeyboardButton toInlineKeyboardButton() {
-    InlineKeyboardButton inlineKeyboardButton = new InlineKeyboardButton();
-    inlineKeyboardButton.setText(text);
-    inlineKeyboardButton.setCallbackData(callback.toCallbackData());
-    return inlineKeyboardButton;
-  }
-
+    public InlineKeyboardButton toInlineKeyboardButton() {
+        InlineKeyboardButton inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText(text);
+        inlineKeyboardButton.setCallbackData(callback.toCallbackData());
+        return inlineKeyboardButton;
+    }
 }
