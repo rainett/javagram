@@ -1,7 +1,7 @@
 package com.rainett.javagram.action.matcher;
 
 import com.rainett.javagram.action.ActionType;
-import com.rainett.javagram.annotations.Command;
+import com.rainett.javagram.annotations.command.Command;
 import com.rainett.javagram.config.BotConfig;
 import com.rainett.javagram.update.type.UpdateType;
 import lombok.RequiredArgsConstructor;

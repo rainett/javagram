@@ -1,5 +1,7 @@
 package com.rainett.javagram.config;
 
+import com.rainett.javagram.update.appready.impl.CommandDto;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -35,4 +37,9 @@ public class BotConfig {
      * Bot token. Copy it from BotFather in telegram
      */
     private String token;
+
+    /**
+     * Commands' descriptions and scopes. If not found, defaults are used
+     */
+    private Map<String, CommandDto> commands;
 }

@@ -1,6 +1,6 @@
-package com.rainett.javagram.action.container;
+package com.rainett.javagram.update.appready;
 
-import com.rainett.javagram.annotations.Command;
+import com.rainett.javagram.annotations.command.Command;
 import java.util.List;
 
 public interface CommandRegisterer {

@@ -1,7 +1,7 @@
 package com.rainett.javagram.action.comparator;
 
 import com.rainett.javagram.action.ActionType;
-import com.rainett.javagram.annotations.Command;
+import com.rainett.javagram.annotations.command.Command;
 import com.rainett.javagram.update.type.UpdateType;
 
 @ActionType(UpdateType.COMMAND)

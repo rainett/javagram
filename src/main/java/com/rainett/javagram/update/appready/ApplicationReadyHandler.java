@@ -1,7 +1,6 @@
-package com.rainett.javagram.update;
+package com.rainett.javagram.update.appready;
 
-import com.rainett.javagram.action.container.CommandRegisterer;
-import com.rainett.javagram.annotations.Command;
+import com.rainett.javagram.annotations.command.Command;
 import com.rainett.javagram.bot.WebhookBot;
 import com.rainett.javagram.config.BotConfig;
 import java.util.List;

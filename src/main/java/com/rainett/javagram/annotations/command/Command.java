@@ -1,5 +1,6 @@
-package com.rainett.javagram.annotations;
+package com.rainett.javagram.annotations.command;
 
+import com.rainett.javagram.annotations.BotAction;
 import com.rainett.javagram.update.type.UpdateType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
